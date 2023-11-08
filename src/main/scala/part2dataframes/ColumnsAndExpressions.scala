@@ -1,7 +1,7 @@
 package part2dataframes
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{col, column, expr}
+import org.apache.spark.sql.functions.{array_remove, col, column, expr}
 
 object ColumnsAndExpressions extends App {
 
@@ -86,5 +86,67 @@ object ColumnsAndExpressions extends App {
   // distinct values
   val allCountriesDF = carsDF.select(col("Origin")).distinct()
   allCountriesDF.show()
+
+  /**
+   * EXERCISES
+   *
+   * 1. read the movies DF and select 2 columns of your choice
+   * 2. create a new column summing up the total profit of the movie
+   * 3. select all COMEDY movies with IMDB raring above 6
+   *
+   * Use as many version as possible
+   */
+
+  // Exercise1
+  val moviesDF = spark.read
+    .option("inferSchema", "true")
+    .json("src/main/resources/data/movies.json")
+
+  val firstTwoColumns = moviesDF.select("Title", "US_Gross")
+  val firstTwoColumns2 = moviesDF.select(
+    moviesDF.col("Title"),
+    col("US_Gross"),
+    $"Major_Genre",
+    expr("IMDB_Rating")
+  )
+
+  val firstTwoColumns3 = moviesDF.selectExpr(
+    "Title", "US_Gross"
+  )
+
+  // Exercise2
+  // first option
+  val moviesProfit = moviesDF.select(
+    col("Title"),
+    col("US_Gross"),
+    col("Worldwide_Gross"),
+    (col("US_Gross") + col("Worldwide_Gross")).as("Total_Gross")
+  )
+
+  // second option
+  val moviesProfit2 = moviesDF.selectExpr(
+    "Title",
+    "US_Gross",
+    "Worldwide_Gross",
+    "US_Gross + Worldwide_Gross as Total_Gross"
+  )
+
+  // third option
+  val moviesProfit3 = moviesDF.select("Title", "US_Gross", "Worldwide_Gross")
+    .withColumn("Total_Gross", col("US_Gross") + col("Worldwide_Gross"))
+
+  // Exercise3
+  // first option
+  val atLeastMediocreComediesDF = moviesDF.select("Title", "IMDB_Rating")
+    .filter(col("Major_Genre") === "Comedy" and col("IMDB_Rating") > 6)
+
+  // second option
+  val atLeastMediocreComediesDF2 = moviesDF.select("Title", "IMDB_Rating")
+    .where(col("Major_Genre") === "Comedy")
+    .where(col("IMDB_Rating") > 6)
+
+  // third option
+  val atLeastMediocreComediesDF3 = moviesDF.select("Title", "IMDB_Rating")
+    .where("Major_Genre = 'Comedy' and IMDB_Rating > 6")
 
 }
