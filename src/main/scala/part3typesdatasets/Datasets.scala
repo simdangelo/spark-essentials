@@ -105,4 +105,41 @@ object Datasets extends App {
   // Actually, solution1 and solution2 returns two different results: Daniels said it's because of Nulls
   // (one solution treats them as 0, the other ignores them), but an user got different results
   // even with Nulls management (he add a coalesce to makes the 2 solutions equals)
+
+  // +++++++++++++++++ DATASETS, PART2 + EXERCISES ++++++++++++++++
+  // How to join and group DSs
+
+  // Joins
+  def readDF2(filename: String) =
+    spark.read
+      .option("inferSchema", "true")
+      .json(s"src/main/resources/data/$filename")
+
+  case class Guitar (Id: Long, make: String, model: String, guitarType: String)
+  case class GuitarPlayer (id: Long, name: String, guitars: Seq[Long], band: Long)
+  case class Band(id: Long, name: String, hometown: String, year:Long)
+
+  val guitarsDS = readDF2("guitars.json").as[Guitar]
+  val guitarPlayersDS = readDF2("guitarPlayers.json").as[GuitarPlayer]
+  val bandsDS = readDF2("bands.json").as[Band]
+
+  val guitarPlayerBandsDS: Dataset[(GuitarPlayer, Band)] = guitarPlayersDS.joinWith(bandsDS, guitarPlayersDS.col("band") === bandsDS.col("id"), "inner")
+
+  guitarPlayerBandsDS.show()
+
+  /**
+   * EXERCISES
+   * 1. join the guitarsDS and guitarPlayerDS (hint: use array_contains)
+   */
+
+  guitarPlayersDS
+    .joinWith(guitarsDS, array_contains(guitarPlayersDS.col("guitars"), guitarsDS.col("id")), "outer")
+    .show()
+
+
+  // Grouping
+  val carsGroupedByOrigin = carsDS.groupByKey(_.Origin).count()
+  carsGroupedByOrigin.show()
+
+  // REMEMBER: joins and grouping are WIDE transformations, will involve SHUFFLE operations.
 }
