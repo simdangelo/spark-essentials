@@ -48,15 +48,15 @@ Class-Path: zookeeper-jute-3.6.3.jar jersey-container-servlet-core-2.40.
  parquet-common-1.13.1.jar avro-mapred-1.11.2.jar commons-compress-1.23.
  0.jar netty-resolver-4.1.96.Final.jar hive-storage-api-2.8.1.jar parque
  t-column-1.13.1.jar hk2-locator-2.6.1.jar log4j-core-2.20.0.jar arrow-m
- emory-netty-12.0.1.jar aircompressor-0.25.jar netty-codec-http-4.1.96.F
- inal.jar datasketches-memory-2.1.0.jar metrics-jvm-4.2.19.jar rocksdbjn
- i-8.3.2.jar jsr305-3.0.2.jar javassist-3.29.2-GA.jar orc-core-1.9.1-sha
- ded-protobuf.jar commons-lang3-3.12.0.jar spark-sql_2.13-3.5.0.jar acti
- vation-1.1.1.jar avro-1.11.2.jar parquet-encoding-1.13.1.jar ivy-2.5.1.
- jar avro-ipc-1.11.2.jar metrics-core-4.2.19.jar xbean-asm9-shaded-4.23.
- jar jakarta.servlet-api-4.0.3.jar py4j-0.10.9.7.jar joda-time-2.12.5.ja
- r commons-crypto-1.1.0.jar log4j-1.2-api-2.20.0.jar jakarta.inject-2.6.
- 1.jar osgi-resource-locator-1.0.3.jar threeten-extra-1.7.1.jar netty-tr
- ansport-native-epoll-4.1.96.Final-linux-aarch_64.jar zookeeper-3.6.3.ja
- r
+ emory-netty-12.0.1.jar scala-reflect-2.13.12.jar scala-library-2.13.12.
+ jar aircompressor-0.25.jar netty-codec-http-4.1.96.Final.jar datasketch
+ es-memory-2.1.0.jar metrics-jvm-4.2.19.jar rocksdbjni-8.3.2.jar jsr305-
+ 3.0.2.jar javassist-3.29.2-GA.jar orc-core-1.9.1-shaded-protobuf.jar co
+ mmons-lang3-3.12.0.jar spark-sql_2.13-3.5.0.jar activation-1.1.1.jar av
+ ro-1.11.2.jar parquet-encoding-1.13.1.jar ivy-2.5.1.jar avro-ipc-1.11.2
+ .jar metrics-core-4.2.19.jar xbean-asm9-shaded-4.23.jar jakarta.servlet
+ -api-4.0.3.jar py4j-0.10.9.7.jar joda-time-2.12.5.jar commons-crypto-1.
+ 1.0.jar log4j-1.2-api-2.20.0.jar jakarta.inject-2.6.1.jar osgi-resource
+ -locator-1.0.3.jar threeten-extra-1.7.1.jar netty-transport-native-epol
+ l-4.1.96.Final-linux-aarch_64.jar zookeeper-3.6.3.jar
 
