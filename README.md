@@ -1,6 +1,6 @@
-This is the official repository for the **Rock the JVM Spark Essentials with Scala** course by Daniel Ciocîrlan.
+This repository contains the code I developed while following Daniel Ciocîrlan's online course **Spark Essentials with Scala**, step by step. The course provided comprehensive guidance on Spark using Scala API, and this code serves as a practical implementation of the concepts covered. 
 
-I took this course to learn basic concepts about Spark using Scala API. I followed Daniel's course step by step covering the following topics:
+The following are the topics covered in the course I wrote the code for:
 * DataFrames Basics
 * DataFrame API
 * Data Sources (json, csv, parquet, DB)
@@ -11,7 +11,6 @@ I took this course to learn basic concepts about Spark using Scala API. I follow
 * How Spark runs on a Cluster
 * Deploying Spark Applications on a Cluster
 
-The following is the original Readme file that Daniel placed in his original repository with instructions on how best to execute the code, especially for using Docker.
 
 # The official repository for the Rock the JVM Spark Essentials with Scala course
 
